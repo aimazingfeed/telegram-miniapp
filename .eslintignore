@@ -1,0 +1,5 @@
+node_modules
+out
+public/landing
+landing/*
+src/lib/graphql/generated/graphql.ts:

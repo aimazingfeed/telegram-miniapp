@@ -1,5 +1,10 @@
+import {
+  mockTelegramEnv,
+  parseInitData,
+  retrieveLaunchParams,
+} from '@tma.js/sdk-react';
+
 import { useClientOnce } from '@/hooks/useClientOnce';
-import { mockTelegramEnv, parseInitData, retrieveLaunchParams } from '@tma.js/sdk-react';
 
 /**
  * Mocks Telegram environment in development mode.
@@ -28,16 +33,22 @@ export function useTelegramMock(): void {
 
     if (shouldMock) {
       const initDataRaw = new URLSearchParams([
-        ['user', JSON.stringify({
-          id: 99281932,
-          first_name: 'Andrew',
-          last_name: 'Rogue',
-          username: 'rogue',
-          language_code: 'en',
-          is_premium: true,
-          allows_write_to_pm: true,
-        })],
-        ['hash', '89d6079ad6762351f38c6dbbc41bb53048019256a9443988af7a48bcad16ba31'],
+        [
+          'user',
+          JSON.stringify({
+            id: 99281932,
+            first_name: 'Andrew',
+            last_name: 'Rogue',
+            username: 'rogue',
+            language_code: 'en',
+            is_premium: true,
+            allows_write_to_pm: true,
+          }),
+        ],
+        [
+          'hash',
+          '89d6079ad6762351f38c6dbbc41bb53048019256a9443988af7a48bcad16ba31',
+        ],
         ['auth_date', '1716922846'],
         ['start_param', 'debug'],
         ['chat_type', 'sender'],
@@ -68,7 +79,7 @@ export function useTelegramMock(): void {
       sessionStorage.setItem('____mocked', '1');
 
       console.info(
-        'As long as the current environment was not considered as the Telegram-based one, it was mocked. Take a note, that you should not do it in production and current behavior is only specific to the development process. Environment mocking is also applied only in development mode. So, after building the application, you will not see this behavior and related warning, leading to crashing the application outside Telegram.',
+        'As long as the current environment was not considered as the Telegram-based one, it was mocked. Take a note, that you should not do it in production and current behavior is only specific to the development process. Environment mocking is also applied only in development mode. So, after building the application, you will not see this behavior and related warning, leading to crashing the application outside Telegram.'
       );
     }
   });
